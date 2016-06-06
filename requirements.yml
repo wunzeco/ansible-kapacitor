@@ -1,0 +1,4 @@
+- src: wunzeco.docker
+- src: wunzeco.influxdb
+- src: wunzeco.telegraf
+- src: wunzeco.chronograf

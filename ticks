@@ -1,0 +1,48 @@
+vagrant@default-ubuntu-1404:~$ cat batch_cpu_alert.tick
+batch
+    |query('''
+        SELECT mean(usage_idle)
+        FROM "telegraf"."default"."cpu"
+    ''')
+        .period(5m)
+        .every(5m)
+        .groupBy(time(1m))
+    |alert()
+        .crit(lambda: "mean" < 70)
+        .log('/tmp/alerts.log')
+vagrant@default-ubuntu-1404:~$ cat cpu_alert.tick
+stream
+    |from()
+        .measurement('cpu')
+    |alert()
+        // Compare values to running mean and standard deviation
+        //.crit(lambda: sigma("usage_idle") > 3)
+        .crit(lambda: "usage_idle" <  90)
+        .log('/tmp/alerts.log')
+        .mode(644)
+        .email() //.to("oiwunze@equalexperts.com")
+vagrant@default-ubuntu-1404:~$ cat real_cpu_alert.tick
+stream
+    |from()
+        .measurement('cpu')
+    // create a new field called 'used' which inverts the idle cpu.
+    |eval(lambda: 100.0 - "usage_idle")
+        .as('used')
+    |groupBy('service', 'datacenter')
+    |window()
+        .period(1m)
+        .every(1m)
+    // calculate the 95th percentile of the used cpu.
+    |percentile('used', 95.0)
+    |eval(lambda: sigma("percentile"))
+        .as('sigma')
+        .keep('percentile', 'sigma')
+    |alert()
+        .id('{{ .Name }}/{{ index .Tags "service" }}/{{ index .Tags "datacenter"}}')
+        .message('{{ .ID }} is {{ .Level }} cpu-95th:{{ index .Fields "percentile" }}')
+        // Compare values to running mean and standard deviation
+        .warn(lambda: "sigma" > 2.5)
+        .crit(lambda: "sigma" > 3.0)
+        .email().to('ogonna.iwunze@gmail.com')
+        .log('/tmp/alerts.log')
+vagrant@default-ubuntu-1404:~$

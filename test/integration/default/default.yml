@@ -1,0 +1,27 @@
+---
+- name: InfluxDB play
+  hosts: test-kitchen
+
+  vars:
+    #telegraf_user: root
+    telegraf_global_tags:
+      machine_role: test-kitchen
+    docker_engine_opts:
+      - '-H tcp://0.0.0.0:2375'
+      - '-H unix:///var/run/docker.sock'
+    kapacitor_smtp_enabled:     true
+    kapacitor_smtp_from:        "kapacitor@test-kitchen.com"
+    kapacitor_smtp_to:          ["oiwunze@equalexperts.com"]
+    kapacitor_smtp_no_verify:   true
+    kapacitor_smtp_global:      true
+
+
+  vars_files:
+    - roles/ansible-kapacitor/test/plugins-vars.yml
+
+  roles:
+    - wunzeco.docker
+    - wunzeco.influxdb
+    - wunzeco.telegraf
+    - wunzeco.chronograf
+    - ansible-kapacitor

@@ -1,0 +1,13 @@
+# User and group
+USER="{{ kapacitor_user }}"
+GROUP="{{ kapacitor_group }}"
+
+# Configuration file
+CONFIG={{ kapacitor_conf_dir }}/kapacitor.conf
+
+# PID file for the daemon
+PIDFILE={{ kapacitor_pid_dir }}/kapacitord.pid
+
+# Max open files
+OPEN_FILE_LIMIT={{ kapacitor_open_file_limit }}
+
