@@ -4,16 +4,16 @@ describe package('kapacitor') do
   it { should be_installed }
 end
 
-describe file('/etc/kapacitor/kapacitor.conf') do
-  it { should be_file }
-  it { should be_owned_by 'root' }
-  it { should be_mode 664 }
-end
-
-describe file('/etc/default/kapacitor') do
-  it { should be_file }
-  it { should be_owned_by 'root' }
-  it { should be_mode 644 }
+%w(
+  /etc/kapacitor/kapacitor.conf
+  /etc/logrotate.d/kapacitor
+  /etc/default/kapacitor
+).each do |f|
+  describe file(f) do
+    it { should be_file }
+    it { should be_owned_by 'root' }
+    it { should be_mode 664 }
+  end
 end
 
 describe file('/var/lib/kapacitor') do
