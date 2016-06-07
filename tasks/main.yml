@@ -9,7 +9,7 @@
     dest:  "{{ kapacitor_conf_dir }}/kapacitor.conf"
     owner: root
     group: root
-    mode:  0664
+    mode:  0644
   notify: Restart kapacitor
 
 - name: Update kapacitor startup script envrionment variables file

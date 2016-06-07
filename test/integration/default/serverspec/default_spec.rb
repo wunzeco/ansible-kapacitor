@@ -12,7 +12,7 @@ end
   describe file(f) do
     it { should be_file }
     it { should be_owned_by 'root' }
-    it { should be_mode 664 }
+    it { should be_mode 644 }
   end
 end
 
