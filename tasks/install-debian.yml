@@ -12,5 +12,7 @@
     state:        present
 
 - name: Install kapacitor
-  apt: name=kapacitor state=present
+  apt:
+    name:  "kapacitor={{ kapacitor_version|default('*') }}"
+    state: present
 
