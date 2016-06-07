@@ -2,13 +2,17 @@
 kapacitor_user: kapacitor 
 kapacitor_group: "{{ kapacitor_user }}"
 
-kapacitor_version:
+#############
+### Package
+kapacitor_version: '*'                # e.g. 0.13.0 or '*' for latest
 kapacitor_signing_key_url: "https://repos.influxdata.com/influxdb.key" 
 kapacitor_apt_repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable" 
+kapacitor_yum_repo_baseurl: 'https://repos.influxdata.com/centos/\$releasever/\$basearch/stable'
 
 ##############
 ## Config
 ##    For futher details, see https://github.com/influxdata/kapacitor/blob/master/etc/kapacitor/kapacitor.conf
+kapacitor_opts:     [] 
 kapacitor_conf_dir: /etc/kapacitor
 kapacitor_data_dir: /var/lib/kapacitor
 kapacitor_pid_dir:  /var/run/kapacitor

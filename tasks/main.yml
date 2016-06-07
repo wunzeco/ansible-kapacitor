@@ -1,18 +1,7 @@
 ---
 
-- name: Download and install kapacitor apt public signing key
-  apt_key:
-    url:   "{{ kapacitor_signing_key_url }}"
-    state: present
-
-- name: Add kapacitor apt repository definition to apt sources list
-  apt_repository: 
-    repo:         "{{ kapacitor_apt_repo }}"
-    update_cache: yes
-    state:        present
-
 - name: Install kapacitor
-  apt: name=kapacitor state=present
+  include: "install-{{ ansible_os_family|lower }}.yml"
 
 - name: Update kapacitor config file
   template:
@@ -31,6 +20,14 @@
     group: root
     mode:  0644
   notify: Restart kapacitor
+
+- name: Create kapacitor logrotate config file
+  template:
+    src:   kapacitor.logrotate.j2
+    dest:  /etc/logrotate.d/kapacitor
+    owner: root
+    group: root
+    mode:  0644
 
 - name: Start kapacitor
   service: name=kapacitor enabled=yes state=started

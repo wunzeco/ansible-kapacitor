@@ -1,0 +1,16 @@
+---
+
+- name: Download and install kapacitor apt public signing key
+  apt_key:
+    url:   "{{ kapacitor_signing_key_url }}"
+    state: present
+
+- name: Add kapacitor apt repository definition to apt sources list
+  apt_repository: 
+    repo:         "{{ kapacitor_apt_repo }}"
+    update_cache: yes
+    state:        present
+
+- name: Install kapacitor
+  apt: name=kapacitor state=present
+

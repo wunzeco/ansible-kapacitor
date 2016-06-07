@@ -1,3 +1,4 @@
+{% if ansible_os_family|lower != 'redhat' %} 
 # User and group
 USER="{{ kapacitor_user }}"
 GROUP="{{ kapacitor_group }}"
@@ -10,4 +11,7 @@ PIDFILE={{ kapacitor_pid_dir }}/kapacitord.pid
 
 # Max open files
 OPEN_FILE_LIMIT={{ kapacitor_open_file_limit }}
-
+{% endif %}
+{% if kapacitor_opts %}
+KAPACITOR_OPTS="{{ kapacitor_opts|join(' ') }}"
+{% endif %}
