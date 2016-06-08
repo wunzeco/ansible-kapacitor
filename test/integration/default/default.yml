@@ -20,7 +20,6 @@
     - roles/ansible-kapacitor/test/plugins-vars.yml
 
   roles:
-    - wunzeco.docker
     - wunzeco.influxdb
     - wunzeco.telegraf
     - wunzeco.chronograf
