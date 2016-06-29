@@ -20,6 +20,15 @@ Ansible role to install and configure Kapacitor. You may also be interested in
 ```
 
 
+## Testing
+
+To run this role's integration tests
+
+```
+kitchen test
+```
+
+
 ## Dependencies
 
 none
