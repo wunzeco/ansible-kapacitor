@@ -11,7 +11,7 @@
       - '-H unix:///var/run/docker.sock'
     kapacitor_smtp_enabled:     true
     kapacitor_smtp_from:        "kapacitor@test-kitchen.com"
-    kapacitor_smtp_to:          ["oiwunze@equalexperts.com"]
+    kapacitor_smtp_to:          ["ogonna@zebioltd.com"]
     kapacitor_smtp_no_verify:   true
     kapacitor_smtp_global:      true
 
