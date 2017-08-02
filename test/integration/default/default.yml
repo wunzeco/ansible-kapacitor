@@ -22,5 +22,4 @@
   roles:
     - wunzeco.influxdb
     - wunzeco.telegraf
-    - wunzeco.chronograf
     - ansible-kapacitor

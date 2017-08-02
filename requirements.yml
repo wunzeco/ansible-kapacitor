@@ -1,3 +1,2 @@
 - src: wunzeco.influxdb
 - src: wunzeco.telegraf
-- src: wunzeco.chronograf
