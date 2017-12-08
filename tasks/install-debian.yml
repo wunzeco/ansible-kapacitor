@@ -1,8 +1,20 @@
 ---
 
-- name: Download and install kapacitor apt public signing key
+# SNI related error occurs if using python < v2.7.9
+#- name: Download and install kapacitor apt public signing key
+#  apt_key:
+#    url:   "{{ kapacitor_signing_key_url }}"
+#    state: present
+
+- name: Download kapacitor apt public signing key
+  command:
+      wget -q "{{ kapacitor_signing_key_url }}" -O /var/tmp/influxdb.key
+  args:
+    creates: /var/tmp/influxdb.key
+
+- name: Install kapacitor apt public signing key
   apt_key:
-    url:   "{{ kapacitor_signing_key_url }}"
+    file:  /var/tmp/influxdb.key
     state: present
 
 - name: Add kapacitor apt repository definition to apt sources list
