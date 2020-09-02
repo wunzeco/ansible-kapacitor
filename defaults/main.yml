@@ -1,18 +1,18 @@
 ---
-kapacitor_user: kapacitor 
+kapacitor_user: kapacitor
 kapacitor_group: "{{ kapacitor_user }}"
 
 #############
 ## Package
 kapacitor_version: '*'                # e.g. 0.13.0 or '*' for latest
-kapacitor_signing_key_url: "https://repos.influxdata.com/influxdb.key" 
-kapacitor_apt_repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable" 
+kapacitor_signing_key_url: "https://repos.influxdata.com/influxdb.key"
+kapacitor_apt_repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
 kapacitor_yum_repo_baseurl: 'https://repos.influxdata.com/centos/\$releasever/\$basearch/stable'
 
 ##############
 ## Config
 ##    For futher details, see https://github.com/influxdata/kapacitor/blob/master/etc/kapacitor/kapacitor.conf
-kapacitor_opts:     [] 
+kapacitor_opts:     []
 kapacitor_conf_dir: /etc/kapacitor
 kapacitor_data_dir: /var/lib/kapacitor
 kapacitor_pid_dir:  /var/run/kapacitor
@@ -69,13 +69,13 @@ kapacitor_smtp_global:               false
 kapacitor_smtp_state_changes_only:   false
 
 # Configure OpsGenie with your API key and default routing key.
-kapacitor_opsgenie_enabled:        false
-kapacitor_opsgenie_api_key:        ""
-kapacitor_opsgenie_teams:          []
-kapacitor_opsgenie_recipients:     []
-kapacitor_opsgenie_url:            "https://api.opsgenie.com/v1/json/alert"
-kapacitor_opsgenie_recovery_url:   "https://api.opsgenie.com/v1/json/alert/note"
-kapacitor_opsgenie_global:         false
+kapacitor_opsgenie_enabled:         false
+kapacitor_opsgenie_api_key:         ""
+kapacitor_opsgenie_teams:           []
+kapacitor_opsgenie_recipients:      []
+kapacitor_opsgenie_url:             "https://api.opsgenie.com/v2/alerts"
+kapacitor_opsgenie_recovery_action: "close"
+kapacitor_opsgenie_global:          false
 
 # Configure VictorOps with your API key and default routing key.
 kapacitor_victorops_enabled:       false
@@ -123,7 +123,7 @@ kapacitor_sensu_source:         "Kapacitor"
 kapacitor_reporting_enabled: true
 kapacitor_reporting_url:     "https://usage.influxdata.com"
 
-# Emit internal statistics about Kapacitor. To consume these stats create a 
+# Emit internal statistics about Kapacitor. To consume these stats create a
 # stream task that selects data from the configured database and retention policy.
 #
 # Example:
@@ -164,4 +164,3 @@ kapacitor_opentsdb_certificate:         "/etc/ssl/influxdb.pem"
 kapacitor_opentsdb_batch_size:          1000
 kapacitor_opentsdb_batch_pending:       5
 kapacitor_opentsdb_batch_timeout:       "1s"
-

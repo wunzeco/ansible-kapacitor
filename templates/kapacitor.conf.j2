@@ -145,7 +145,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   # meaning alerts will only be sent if the alert state changes.
   state-changes-only = {{ kapacitor_smtp_state_changes_only|default(false)|bool|lower }}
 
-[opsgenie]
+[opsgenie2]
     # Configure OpsGenie with your API key and default routing key.
     enabled = {{ kapacitor_opsgenie_enabled|default(false)|bool|lower }}
     # Your OpsGenie API Key.
@@ -165,7 +165,7 @@ data_dir = "{{ kapacitor_data_dir }}"
     # The OpsGenie Recovery URL, you can change this
     # based on which behavior you want a recovery to
     # trigger (Add Notes, Close Alert, etc.)
-    recovery_url = "{{ kapacitor_opsgenie_recovery_url }}"
+    recovery_action = "{{ kapacitor_opsgenie_recovery_action }}"
     # If true then all alerts will be sent to OpsGenie
     # without explicitly marking them in the TICKscript.
     # The team and recipients can still be overridden.
