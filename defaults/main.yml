@@ -94,7 +94,7 @@ kapacitor_pagerduty_global:        false
 kapacitor_opsgenie_enabled:         false
 kapacitor_opsgenie_api_key:         ""
 kapacitor_opsgenie_url:             "https://api.opsgenie.com/v2/alerts"
-kapacitor_opsgenie_teams:           []
+kapacitor_opsgenie_teams:           ""
 kapacitor_opsgenie_recovery_action: "close"
 kapacitor_opsgenie_global:          false
 
