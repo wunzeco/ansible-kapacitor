@@ -203,7 +203,7 @@ data_dir = "{{ kapacitor_data_dir }}"
   # OpsGenie api key
   api-key = "{{ kapacitor_opsgenie_api_key }}"
   # Default teams to be notified
-  teams =  "{{ kapacitor_opsgenie_teams }}"
+  teams = [ "{{ kapacitor_opsgenie_teams }}"]
   # The OpsGenie API URL. This should not need to be changed.
   url = "{{ kapacitor_opsgenie_url}}"
   #The Recovery Action specifies which action to take when alerts recover
