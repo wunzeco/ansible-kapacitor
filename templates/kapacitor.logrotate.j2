@@ -1,4 +1,5 @@
 {{ kapacitor_log_dir }}/kapacitor.log {
+    size 100M
     daily
     rotate 7
     missingok
@@ -8,6 +9,7 @@
 }
 
 {{ kapacitor_log_dir }}/kapacitord.err {
+    size 50M
     weekly
     rotate 5
     missingok
